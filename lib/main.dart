@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapapp/getuserlocation.dart';
 import 'package:mapapp/map_page.dart';
 import 'package:mapapp/mapscreen.dart';
 import 'package:mapapp/transform_latlng.dart';
@@ -12,6 +13,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: TransformLatLng());
+    return const MaterialApp(home: GetUserLocation());
   }
 }
