@@ -1,8 +1,6 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:mapapp/Notifications/new_notification.dart';
-import 'package:mapapp/Notifications/notification_services.dart';
-import 'package:mapapp/schedule.dart';
+import 'package:mapapp/Notifications/schedule.dart';
 
 class NotificationsPanel extends StatefulWidget {
   const NotificationsPanel({super.key});

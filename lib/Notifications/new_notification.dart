@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:mapapp/schedule.dart';
+import 'package:mapapp/Notifications/schedule.dart';
 
 class NotificationService{
   @pragma("vm:entry-point")

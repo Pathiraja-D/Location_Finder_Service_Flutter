@@ -1,8 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mapapp/map/map_services.dart';
 
 class GetUserLocation extends StatefulWidget {
   const GetUserLocation({super.key});
@@ -12,6 +11,7 @@ class GetUserLocation extends StatefulWidget {
 }
 
 class _GetUserLocationState extends State<GetUserLocation> {
+  MapServices mapServices = MapServices();
   final Completer<GoogleMapController> controller = Completer();
   static CameraPosition _initialPosition = CameraPosition(
     target: LatLng(7.8774222, 80.7003428),
@@ -26,32 +26,22 @@ class _GetUserLocationState extends State<GetUserLocation> {
         infoWindow: InfoWindow(title: 'My Home')),
   ];
 
-  Future<Position> getUserLocation() async {
-    await Geolocator.requestPermission()
-        .then((value) {})
-        .onError((error, stackTrace) {
-      print('error $error');
-    });
-
-    return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-  }
-
-  packData() {
-    getUserLocation().then((value) async {
+  locateMyLocation() {
+    mapServices.getUserLocationAccess().then((value) async {
       print('My location');
       print('${value.latitude} ${value.longitude}');
 
       mymarker.add(
         Marker(
-            markerId: MarkerId('Senod Marker'),
+            markerId: MarkerId('Secnod Marker'),
             position: LatLng(value.latitude, value.longitude),
-            infoWindow: InfoWindow(title: 'Second Marker')),
+            infoWindow: InfoWindow(title: 'My Current Location')),
       );
+
       CameraPosition cameraPosition = CameraPosition(
           target: LatLng(value.latitude, value.longitude), zoom: 14);
 
-      final GoogleMapController controller = await this.controller.future;
+      GoogleMapController controller = await this.controller.future;
 
       controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
@@ -82,7 +72,7 @@ class _GetUserLocationState extends State<GetUserLocation> {
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.search),
           onPressed: () {
-            packData();
+            locateMyLocation();
           }),
     );
   }

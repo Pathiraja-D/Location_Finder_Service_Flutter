@@ -3,32 +3,23 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mapapp/Notifications/new_notification.dart';
 import 'package:mapapp/Notifications/notification.dart';
-import 'package:mapapp/firebase_options.dart';
-import 'package:mapapp/getuserlocation.dart';
-import 'package:mapapp/map_page.dart';
-import 'package:mapapp/mapscreen.dart';
-import 'package:mapapp/placesapi/custom_markers.dart';
-import 'package:mapapp/placesapi/places_api.dart';
-import 'package:mapapp/placesapigoogle.dart';
-import 'package:mapapp/transform_latlng.dart';
+import 'package:mapapp/map/map.dart';
 
 void main() async {
   await AwesomeNotifications().initialize(null, [
     NotificationChannel(
-      channelKey: 'basic_channel',
-      channelName: 'Basic notifications',
-      channelDescription: 'Notification channel for basic tests',
-      defaultColor: Color(0xFF9D50DD),
-      ledColor: Colors.white,
-      playSound: true,
-      enableVibration: true,
-      channelGroupKey: 'basic_channel_group',
-      importance: NotificationImportance.Max,
-      defaultPrivacy: NotificationPrivacy.Public,
-      defaultRingtoneType: DefaultRingtoneType.Notification,
-      locked: true
-      
-    )
+        channelKey: 'basic_channel',
+        channelName: 'Basic notifications',
+        channelDescription: 'Notification channel for basic tests',
+        defaultColor: Color(0xFF9D50DD),
+        ledColor: Colors.white,
+        playSound: true,
+        enableVibration: true,
+        channelGroupKey: 'basic_channel_group',
+        importance: NotificationImportance.Max,
+        defaultPrivacy: NotificationPrivacy.Public,
+        defaultRingtoneType: DefaultRingtoneType.Notification,
+        locked: true)
   ], channelGroups: [
     NotificationChannelGroup(
       channelGroupKey: 'basic_channel_group',
@@ -68,6 +59,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: NotificationsPanel());
+    return const MaterialApp(home: MapView());
   }
 }
